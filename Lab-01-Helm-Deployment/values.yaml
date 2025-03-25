@@ -1,9 +1,9 @@
+replicas: 3
 appName: hello-world
 port: 80
 configmap:
-  name: hello-world-configmap-v1
-  data:
-    CUSTOM_HEADER: 'This app was deployed with helm!'
+  name: hello-world
+  fileName: index.html
 image:
-  name: ubuntuk8s/helloworld
+  name: nginx
   tag: latest

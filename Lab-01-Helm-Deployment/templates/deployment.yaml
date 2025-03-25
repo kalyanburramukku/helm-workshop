@@ -17,13 +17,10 @@ spec:
         tier: frontend
     spec: # Pod spec
       containers:
-        - name: hello-world
+        - name: {{ .Values.appName }}
           image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 80
-          envFrom:
-            - configMapRef:
-                name: {{ .Values.configmap.name }}
           resources:
             requests:
               memory: "16Mi"
@@ -31,3 +28,14 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "100m"
+          volumeMounts:
+            - name: {{ .Values.appName }}
+              mountPath: /usr/share/nginx/html/{{ .Values.configmap.fileName }}
+              subPath: {{ .Values.configmap.fileName }}
+      volumes:
+        - name: {{ .Values.appName }}
+          configMap:
+            name: {{ .Values.appName }}
+            items:
+              - key: {{ .Values.configmap.fileName }}
+                path: {{ .Values.configmap.fileName }}
