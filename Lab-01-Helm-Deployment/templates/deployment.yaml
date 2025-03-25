@@ -13,7 +13,6 @@ spec:
     metadata:
       labels:
         app: {{ .Values.appName }}
-        tier: frontend
     spec: # Pod spec
       containers:
         - name: {{ .Values.appName }}
