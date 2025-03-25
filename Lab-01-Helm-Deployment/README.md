@@ -11,8 +11,9 @@ helm install app01 Lab-01-Helm-Deployment/ --values Lab-01-Helm-Deployment/value
 kubectl get all -n dev
 curl 192.168.49.2:30000
 helm uninstall app01 -n dev
----
+
 helm install app01 Lab-01-Helm-Deployment/ --values Lab-01-Helm-Deployment/values.yaml -f Lab-01-Helm-Deployment/values-prd.yaml --set environment=prd --namespace prd
 kubectl get all -n prd
+curl 192.168.49.2:30500
 helm uninstall app01 -n dev
 ```
