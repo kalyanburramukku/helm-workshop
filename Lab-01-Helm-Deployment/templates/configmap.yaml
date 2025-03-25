@@ -4,4 +4,4 @@ metadata:
   name: {{ .Values.appName }}
 data:
   {{ .Values.configmap.fileName }}: |-
-    {{ .Files.Get "files/dev.index.html" | nindent 4 }}
+    {{ .Files.Get (printf "files/%s.index.html" .Values.configmap.environment ) | nindent 4 }}

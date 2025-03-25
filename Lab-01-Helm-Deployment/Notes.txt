@@ -1,4 +1,0 @@
-Different options:
-    {{ .Files.Get (printf "%s.index.html" .Values.configmap.environment) | nindent 4 }}
-    {{ .Files.Get "files/index.html" | nindent 4 }}
-    { .Files.Get (printf "files/%s.%s.html" .Values.configmap.environment .Values.configmap.fileName) | nindent 4 }}
