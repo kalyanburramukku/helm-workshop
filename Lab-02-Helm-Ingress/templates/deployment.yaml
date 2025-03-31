@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fe-{{ .Values.appName }}
+spec:
+  selector:
+    matchLabels:
+      app: fe-{{ .Values.appName }}
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: fe-{{ .Values.appName }}
+    spec:
+      containers:
+        - name: fe-{{ .Values.appName }}
+          image: {{ .Values.image.name }}
+          args:
+            - "-listen=:8080"
+            - '-text="This is front end"'
+          ports:
+            - containerPort: {{ .Values.port }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: be-{{ .Values.appName }}
+spec:
+  selector:
+    matchLabels:
+      app: be-{{ .Values.appName }}
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: be-{{ .Values.appName }}
+    spec:
+      containers:
+        - name: be-{{ .Values.appName }}
+          image: {{ .Values.image.name }}
+          args:
+            - "-listen=:8080"
+            - '-text="This is backend end"'
+          ports:
+            - containerPort: {{ .Values.port }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.appName }}
+          image: {{ .Values.image.name }}
+          args:
+            - "-listen=:8080"
+            - '-text="This is Home Page"'
+          ports:
+            - containerPort: {{ .Values.port }}

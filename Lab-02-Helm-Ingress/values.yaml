@@ -1,0 +1,9 @@
+appName: my-ingress
+port: 8080
+image:
+  name: hashicorp/http-echo
+  tag: latest
+replicas: 1
+service:
+  type: ClusterIP
+host: demo.example.com
