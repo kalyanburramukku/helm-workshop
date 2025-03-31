@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.appName }}
+  labels:
+    app: {{ .Values.appName }}
+spec:
+  type: {{ .Values.type }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.port }}		# Port exposed within the cluster
+      targetPort: 80	# Port on the pods
+      nodePort: {{ .Values.nodePort }}	# Port accessible externally on each node
+  selector:
+    app: {{ .Values.appName }}
+    
