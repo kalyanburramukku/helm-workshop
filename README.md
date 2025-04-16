@@ -13,3 +13,10 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 Username: admin
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
+### Install Argo Rollouts Kubectl plugin
+```
+curl -LO https://github.com/argoproj/argo-rollouts/releases/latest/download/kubectl-argo-rollouts-darwin-amd64
+chmod +x ./kubectl-argo-rollouts-darwin-amd64
+sudo mv ./kubectl-argo-rollouts-darwin-amd64 /usr/local/bin/kubectl-argo-rollouts
+kubectl argo rollouts version (Test to ensure the version you installed is up-to-date)
+```
