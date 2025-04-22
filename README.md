@@ -26,6 +26,8 @@ kubectl argo rollouts version (Test to ensure the version you installed is up-to
 kubectl create namespace argo-rollouts
 kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
 kubectl apply -k https://github.com/argoproj/argo-rollouts/manifests/crds\?ref\=stable
+kubectl argo rollouts dashboard
+http://localhost:3100
 kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-rollouts/master/docs/getting-started/basic/rollout.yaml
 kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-rollouts/master/docs/getting-started/basic/service.yaml
 ```
